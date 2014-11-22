@@ -15,7 +15,7 @@ file(GLOB_RECURSE HEADERS ${PROJECT_SOURCE_DIR}/src/*.h)
 find_package(TinyXML)
 find_package(ZLIB)
 
-set(LIB_CFLAGS "-pedantic -Werror -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes")
+set(LIB_CFLAGS "-pedantic -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes")
 set(EXAMPLE_CFLAGS "-pedantic -Werror -Wall")
 #include_directories("${PROJECT_SOURCE_DIR}/include")
 
@@ -32,10 +32,10 @@ set_target_properties(tmxparser PROPERTIES
 target_link_libraries(tmxparser ${TINYXML_LIBRARIES} ${ZLIB_LIBRARIES})
 include_directories(${TINYXML_INCLUDE_DIR} ${ZLIB_INCLUDE_DIRS})
 
-add_executable(test test/test.cpp)
-set_target_properties(test PROPERTIES
+add_executable(tmxparser_tests test/test.cpp)
+set_target_properties(tmxparser_tests PROPERTIES
   COMPILE_FLAGS ${EXAMPLE_CFLAGS})
-target_link_libraries(test tmxparser ${TINYXML_LIBRARIES})
+target_link_libraries(tmxparser_tests tmxparser ${TINYXML_LIBRARIES})
 
 install(FILES ${HEADERS} DESTINATION include/tmxparser)
 install(TARGETS tmxparser tmxparser_static DESTINATION lib)
